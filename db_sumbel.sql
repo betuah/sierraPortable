@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100125
 File Encoding         : 65001
 
-Date: 2017-11-13 14:34:14
+Date: 2017-11-13 15:24:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -118,28 +118,6 @@ CREATE TABLE `tb_materi` (
 -- Records of tb_materi
 -- ----------------------------
 INSERT INTO `tb_materi` VALUES ('00000000003', 'Testing asdasd asd asd asda s das dasda sdas dasdasd asd asd ', 'asdasdasd', 'document', 'K1', '1', '1', '1', 'content_1510217180.pdf', '2', '2017-Nov-0');
-
--- ----------------------------
--- View structure for sumbel
--- ----------------------------
-DROP VIEW IF EXISTS `sumbel`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `sumbel` AS SELECT
-db_materi.id_materi,
-db_materi.judul,
-db_materi.`desc`,
-db_materi.jen,
-db_materi.kelas,
-db_materi.id_jenjang,
-tb_jenjang.ket,
-db_materi.id_mapel,
-db_mapel.nama_mapel,
-db_materi.id_jurusan,
-db_jur.nama_jur
-FROM
-db_materi
-INNER JOIN db_jur ON db_materi.id_jurusan = db_jur.id_jurusan
-INNER JOIN db_mapel ON db_materi.id_mapel = db_mapel.id_mapel
-INNER JOIN tb_jenjang ON db_materi.id_jenjang = tb_jenjang.id_jenjang AND db_jur.jenjang_jur = tb_jenjang.id_jenjang ;
 
 -- ----------------------------
 -- View structure for v_content
