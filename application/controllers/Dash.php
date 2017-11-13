@@ -63,4 +63,19 @@ class Dash extends CI_Controller {
 		force_download('content/'.$jen.'/'.$file, NULL);
 	}
 
+	public function update($jen, $file) {
+		$this->load->library('ftp');
+
+		$config['hostname'] 	= 'ftp://172.32.69.6';
+		$config['username'] 	= 'sierra';
+		$config['password'] 	= 'sierra321';
+		$config['debug']        = TRUE;
+
+		$conn = $this->ftp->connect($config);
+
+		$this->ftp->download($jen.'/'.$file, $base_url().'/content/'.$jen.'/'.$file, 'ascii');
+
+		$this->ftp->close();
+	}
+
 }
