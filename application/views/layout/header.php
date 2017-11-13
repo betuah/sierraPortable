@@ -15,6 +15,8 @@
 
 <link href="<?php echo base_url()?>assets/plugins/dropzone/dropzone.min.css" rel="stylesheet">
 <link href="<?php echo base_url()?>assets/plugins/dropzone/basic.min.css" rel="stylesheet">
+<link href="<?php echo base_url()?>assets/plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="<?php echo base_url()?>assets/plugins/google-code-prettify/prettify.css" rel="stylesheet" type="text/css"/>
 
 
 <!-- Theme Styles -->

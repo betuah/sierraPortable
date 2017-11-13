@@ -5,7 +5,7 @@
             <div class="card stats-card">
                 <div class="card-content">
                     <span class="card-title"><i class="material-icons">library_books</i></li>Buku</span>
-                    <span class="stats-counter"><span class="counter">48190</span><small>Buku</small></span>
+                    <span class="stats-counter"><span class="counter"><?php echo $count_buku ?></span><small>Buku</small></span>
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
             <div class="card stats-card">
                 <div class="card-content">
                     <span class="card-title"><i class="material-icons">video_library</i>Video</span>
-                    <span class="stats-counter"><span class="counter">48190</span><small>Video</small></span>
+                    <span class="stats-counter"><span class="counter"><?php echo $count_video ?></span><small>Video</small></span>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
             <div class="card stats-card">
                 <div class="card-content">
                     <span class="card-title"><i class="material-icons">dns</i>Semua Data</span>
-                    <span class="stats-counter"><span class="counter">48190</span><small>Data</small></span>
+                    <span class="stats-counter"><span class="counter"><?php echo $count_all ?></span><small>Data</small></span>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
                     <span class="card-title">SMA</span>
                 </div>
                 <div class="card-action">
-                    <a href="#">SUMBER BELAJAR SMA</a>
+                    <a href="view/sma">SUMBER BELAJAR SMA</a>
                 </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
                     <span class="card-title">SMK</span>
                 </div>
                 <div class="card-action">
-                    <a href="#">SUMBER BELAJAR SMK</a>
+                    <a href="view/smk">SUMBER BELAJAR SMK</a>
                 </div>
             </div>
           </div>

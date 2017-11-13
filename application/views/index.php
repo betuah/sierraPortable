@@ -4,7 +4,7 @@
       <?php $this->load->view('layout/header') ?>
     </head>
     <body>
-      
+      <?php $this->load->view('layout/loader') ?>
       <div class="mn-content fixed-sidebar">
           <?php $this->load->view('layout/b_header') ?>
           <?php $this->load->view('layout/sidenav') ?>
@@ -14,11 +14,5 @@
       <div class="left-sidebar-hover"></div>
 
       <?php $this->load->view('layout/javascript') ?>
-
-      <script type="text/javascript">
-        function jur(JUR) {
-          alert(JUR);
-        }
-      </script>
     </body>
 </html>

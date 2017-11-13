@@ -13,9 +13,18 @@
         </div>
 
     <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
-        <li class="no-padding active"><a class="waves-effect waves-grey active" href="<?php echo base_url(); ?>"><i class="material-icons">assignment</i>Sumber Belajar</a></li>
-        <li class="no-padding active"><a class="waves-effect waves-grey active" href="<?php echo base_url(); ?>update"><i class="material-icons">apps</i>Cek Data Terbaru</a></li>
-        <li class="no-padding active"><a class="waves-effect waves-grey active" href="<?php echo base_url(); ?>view/add"><i class="material-icons">edit</i>Tambah Data</a></li>
+        <li class="no-padding"><a class="waves-effect waves-grey active" href="<?php echo base_url(); ?>"><i class="material-icons">assignment</i>Sumber Belajar</a></li>
+        <li class="no-padding"><a class="waves-effect waves-grey active" href="<?php echo base_url(); ?>update"><i class="material-icons">apps</i>Cek Data Terbaru</a></li>
+        <li class="no-padding">
+            <a class="collapsible-header waves-effect waves-grey active"><i class="material-icons">mode_edit</i>Pengolahan Data<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="<?php echo base_url(); ?>view/add">Content</a></li>
+                    <li><a href="<?php echo base_url(); ?>view/add">Jurusan</a></li>
+                    <li><a href="<?php echo base_url(); ?>view/add">Mata Pelajaran</a></li>
+                </ul>
+            </div>
+        </li>
     </ul>
     <div class="footer">
         <p class="copyright">SIERRA Developer TEAM ©</p>

@@ -1,7 +1,6 @@
-
-
 <!-- Javascripts -->
 <script src="<?php echo base_url()?>assets/plugins/jquery/jquery-2.2.0.min.js"></script>
+<!-- <script src="<?php echo base_url()?>assets/js/jquery-3.2.1.min.js"></script> -->
 <script src="<?php echo base_url()?>assets/plugins/materialize/js/materialize.min.js"></script>
 <script src="<?php echo base_url()?>assets/plugins/material-preloader/js/materialPreloader.min.js"></script>
 <script src="<?php echo base_url()?>assets/plugins/jquery-blockui/jquery.blockui.js"></script>
@@ -20,4 +19,10 @@
 <script src="<?php echo base_url()?>assets/js/pages/form_elements.js"></script>
 <script src="<?php echo base_url()?>assets/plugins/dropzone/dropzone.min.js"></script>
 <script src="<?php echo base_url()?>assets/plugins/dropzone/dropzone-amd-module.min.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/pages/table-data.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/jquery-blockui/jquery.blockui.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/google-code-prettify/prettify.js"></script>
+<script src="<?php echo base_url()?>assets/js/pages/ui-modals.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/google-code-prettify/prettify.js"></script>
 <!-- <script src="<?php echo base_url()?>assets/js/pages/dashboard.js"></script> -->

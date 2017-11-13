@@ -9,7 +9,7 @@ $(document).ready(function() {
                 sFirst: '<i class="material-icons">chevron_left</i>',
                 sPrevious: '<i class="material-icons">chevron_left</i>',
                 sNext: '<i class="material-icons">chevron_right</i>',
-                sLast: '<i class="material-icons">chevron_right</i>' 
+                sLast: '<i class="material-icons">chevron_right</i>'
         }
         }
     });
