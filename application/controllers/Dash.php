@@ -37,6 +37,8 @@ class Dash extends CI_Controller {
 		$data['get_materi']			= $this->materi->get_materi();
 		$data['get_m_folder']		= $this->materi->get_m_folder($like);
 		$data['slug']				= $req;
+		$data['update']				= $this->cek();
+		
 		if ($req == 'sma' || $req == 'smk') {
 			$data['req'] 			= 'folder';
 		} else {
@@ -87,15 +89,13 @@ class Dash extends CI_Controller {
 				'datalist' => $data
 				);
 				
-				print_r($data_array);
+				return $data_array;
 			} else {
 				echo "API Tidak Tersedia";
 			}
 		} else {
 			echo "Periksa Kembali Jaringan Internet Anda";
 		}
-		
-		
 	}
 
 	public function update($jen, $file) {                           

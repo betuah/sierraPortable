@@ -14,7 +14,7 @@
 
     <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
         <li class="no-padding"><a class="waves-effect waves-grey active" href="<?php echo base_url(); ?>"><i class="material-icons">assignment</i>Sumber Belajar</a></li>
-        <li class="no-padding"><a class="waves-effect waves-grey active" href="<?php echo base_url(); ?>/view/update"><i class="material-icons">apps</i>Cek Data Terbaru</a></li>
+        <li class="no-padding"><a class="waves-effect waves-grey active" href="<?php echo base_url(); ?>view/update"><i class="material-icons">apps</i>Cek Data Terbaru</a></li>
         <li class="no-padding">
             <a class="collapsible-header waves-effect waves-grey active"><i class="material-icons">mode_edit</i>Pengolahan Data<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
             <div class="collapsible-body">

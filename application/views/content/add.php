@@ -59,7 +59,7 @@
                                         </select>
                                         <label>Jurusan</label>
                                     </div>
-                                    <div class="input-field col s6">
+                                    <!-- <div class="input-field col s6">
                                         <select id="folder" name="folder">
                                           <option disabled selected>Pilih Folder</option>
                                           <?php foreach ($get_folder as $fol): ?>                                           
@@ -67,8 +67,8 @@
                                           <?php endforeach; ?>
                                         </select>
                                         <label>Folder</label>
-                                    </div>
-                                    <div class="input-field col s6">
+                                    </div> -->
+                                    <div class="input-field col s12">
                                         <select name="jen">
                                             <option disabled selected>Pilih Opsi</option>
                                             <option value="document">PDF</option>
