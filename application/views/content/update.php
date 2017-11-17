@@ -2,7 +2,32 @@
     <div class="middle-content">
       <div class="row">
         <div class="row">
-          
+          <?php foreach ($update as $content): ?>
+            <div class="col s12 m4">
+              <div class="card">
+                  <div class="card-image">
+                      <img src="<?php echo base_url()?>assets/images/bg-content.jpg" alt="" height="150">
+                  </div>
+                  <div class="card-action">
+
+                      <a href="<?php echo base_url().'download/'.$content->jen.'/'.$content->id_materi?>"><?php echo $content->judul; ?></a><br>
+                      <p><?php echo $content->jen.' , '.$content->date; ?><span class="new badge" data-badge-caption="New"></span></a></p>
+                  </div>
+              </div>
+            </div>
+          <?php endforeach ?>  
+          <?php foreach ($update as $content): ?>
+            <div class="col s12 m4">
+              <div class="card">
+                  <div class="card-image">
+                      <img src="<?php echo base_url()?>assets/images/bg-content.jpg" alt="" height="150">
+                  </div>
+                  <div class="card-action">
+                      <a href=""><?php echo $content->judul ?></a><br>         
+                  </div>
+              </div>
+            </div>
+          <?php endforeach ?>  
         </div>
       </div>
     </div>

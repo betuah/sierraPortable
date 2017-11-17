@@ -37,7 +37,10 @@ class Dash extends CI_Controller {
 		$data['get_materi']			= $this->materi->get_materi();
 		$data['get_m_folder']		= $this->materi->get_m_folder($like);
 		$data['slug']				= $req;
-		$data['update']				= $this->cek();
+
+		if ($req == 'update') {
+			$data['update']				= $this->cek();
+		}
 		
 		if ($req == 'sma' || $req == 'smk') {
 			$data['req'] 			= 'folder';
@@ -66,7 +69,7 @@ class Dash extends CI_Controller {
 	}
 
 	public function cek_conn() {
-		$connected = @fsockopen("172.32.69.6", 80); 
+		$connected = @fsockopen("172.16.0.120", 80); 
                                         
 	    if ($connected){
 	        $is_conn = true; //action when connected
@@ -79,7 +82,7 @@ class Dash extends CI_Controller {
 
 	public function cek() {
 		if ($this->cek_conn()) {
-			$url="http://172.32.69.6/sumbel/api_content";
+			$url="http://172.16.0.120/sumbel/api_content";
 			$get_url = file_get_contents($url);
 
 			if ($get_url) {
@@ -89,7 +92,7 @@ class Dash extends CI_Controller {
 				'datalist' => $data
 				);
 				
-				return $data_array;
+				return $data;
 			} else {
 				echo "API Tidak Tersedia";
 			}
@@ -102,7 +105,7 @@ class Dash extends CI_Controller {
 	    if ($this->cek_conn()){
 	        $this->load->library('ftp');
 
-			$config['hostname'] 	= 'ftp://172.32.69.6';
+			$config['hostname'] 	= 'ftp://172.16.0.120';
 			$config['username'] 	= 'sierra';
 			$config['password'] 	= 'sierra321';
 			$config['debug']        = TRUE;
