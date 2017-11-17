@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100125
 File Encoding         : 65001
 
-Date: 2017-11-13 15:24:14
+Date: 2017-11-17 12:34:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -103,6 +103,7 @@ CREATE TABLE `tb_materi` (
   `file` varchar(255) DEFAULT NULL,
   `folder` int(11) DEFAULT NULL,
   `date` varchar(10) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_materi`),
   KEY `fk_jur` (`id_jurusan`),
   KEY `fk_mapel` (`id_mapel`),
@@ -112,12 +113,12 @@ CREATE TABLE `tb_materi` (
   CONSTRAINT `fk_jenjang` FOREIGN KEY (`id_jenjang`) REFERENCES `tb_jenjang` (`id_jenjang`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_jur` FOREIGN KEY (`id_jurusan`) REFERENCES `tb_jur` (`id_jurusan`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tb_mapel` (`id_mapel`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tb_materi
 -- ----------------------------
-INSERT INTO `tb_materi` VALUES ('00000000003', 'Testing asdasd asd asd asda s das dasda sdas dasdasd asd asd ', 'asdasdasd', 'document', 'K1', '1', '1', '1', 'content_1510217180.pdf', '2', '2017-Nov-0');
+INSERT INTO `tb_materi` VALUES ('00000000001', 'asdasdasd', 'asdasdasd asd asd a sdasd asd asd asda sd', 'document', 'K1', '1', '1', '1', 'content_1510892877.pdf', '1', '2017-11-17', '1510892877');
 
 -- ----------------------------
 -- View structure for v_content
