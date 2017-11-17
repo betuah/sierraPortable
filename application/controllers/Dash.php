@@ -38,9 +38,9 @@ class Dash extends CI_Controller {
 		$data['get_m_folder']		= $this->materi->get_m_folder($like);
 		$data['slug']				= $req;
 		if ($req == 'sma' || $req == 'smk') {
-			$data['req'] 				= 'folder';
+			$data['req'] 			= 'folder';
 		} else {
-			$data['req'] 				= $req;
+			$data['req'] 			= $req;
 		}
 
 		// print_r($this->data->get_kelas());
@@ -63,19 +63,57 @@ class Dash extends CI_Controller {
 		force_download('content/'.$jen.'/'.$file, NULL);
 	}
 
-	public function update($jen, $file) {
-		$this->load->library('ftp');
-
-		$config['hostname'] 	= 'ftp://172.32.69.6';
-		$config['username'] 	= 'sierra';
-		$config['password'] 	= 'sierra321';
-		$config['debug']        = TRUE;
-
-		$conn = $this->ftp->connect($config);
-
-		$this->ftp->download($jen.'/'.$file, $base_url().'/content/'.$jen.'/'.$file, 'ascii');
-
-		$this->ftp->close();
+	public function cek_conn() {
+		$connected = @fsockopen("172.32.69.6", 80); 
+                                        
+	    if ($connected){
+	        $is_conn = true; //action when connected
+	        fclose($connected);
+	    }else{
+	        $is_conn = false; //action in connection failure
+	    }
+	    return $is_conn;
 	}
 
+	public function cek() {
+		if ($this->cek_conn()) {
+			$url="http://172.32.69.6/sumbel/api_content";
+			$get_url = file_get_contents($url);
+
+			if ($get_url) {
+				$data = json_decode($get_url);
+
+				$data_array = array(
+				'datalist' => $data
+				);
+				
+				print_r($data_array);
+			} else {
+				echo "API Tidak Tersedia";
+			}
+		} else {
+			echo "Periksa Kembali Jaringan Internet Anda";
+		}
+		
+		
+	}
+
+	public function update($jen, $file) {                           
+	    if ($this->cek_conn()){
+	        $this->load->library('ftp');
+
+			$config['hostname'] 	= 'ftp://172.32.69.6';
+			$config['username'] 	= 'sierra';
+			$config['password'] 	= 'sierra321';
+			$config['debug']        = TRUE;
+
+			$conn = $this->ftp->connect($config);
+
+			$this->ftp->download($jen.'/'.$file, $base_url().'/content/'.$jen.'/'.$file, 'ascii');
+
+			$this->ftp->close();
+	    }else{
+	        echo "Periksa Kembali jaringan anda";
+	    }
+	}
 }

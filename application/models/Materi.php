@@ -74,25 +74,25 @@
 
       $this->load->library('upload');
 
-          $format                         = explode(".",$_FILES['file']['name']);
-          $type                           = $this->input->post('jen');
-          $nmfile                         = "content_".time().".".$format[1];
-          $config['upload_path']          = 'content/'.$type;
-          $config['allowed_types']        = 'pdf|rar|zip|mp4|mp3';
-          $config['max_size']             = 1000000; // Satuan Kbps
-          $config['file_name']            = $nmfile;
+      $format                         = explode(".",$_FILES['file']['name']);
+      $type                           = $this->input->post('jen');
+      $nmfile                         = "content_".time().".".$format[1];
+      $config['upload_path']          = 'content/'.$type;
+      $config['allowed_types']        = 'pdf|rar|zip|mp4|mp3';
+      $config['max_size']             = 1000000; // Satuan Kbps
+      $config['file_name']            = $nmfile;
 
-          $this->upload->initialize($config);
-          $file     = $this->upload->data();
+      $this->upload->initialize($config);
+      $file      = $this->upload->data();
 
-          $this->form_validation->set_rules('judul','judul','required');
-          $this->form_validation->set_rules('jenjang','jenjang','required');
-          $this->form_validation->set_rules('desc','desc','required');
-          $this->form_validation->set_rules('jen','jen','required');
-          $this->form_validation->set_rules('mapel','mapel','required');
-          $this->form_validation->set_rules('jur','jur','required');
-          $this->form_validation->set_rules('kelas','kelas','required');
-          $this->form_validation->set_rules('folder','folder','required');
+      $this->form_validation->set_rules('judul','judul','required');
+      $this->form_validation->set_rules('jenjang','jenjang','required');
+      $this->form_validation->set_rules('desc','desc','required');
+      $this->form_validation->set_rules('jen','jen','required');
+      $this->form_validation->set_rules('mapel','mapel','required');
+      $this->form_validation->set_rules('jur','jur','required');
+      $this->form_validation->set_rules('kelas','kelas','required');
+      $this->form_validation->set_rules('folder','folder','required');
 
       if ($this->form_validation->run() == FALSE) {
         return $mssg = "<SCRIPT LANGUAGE='JavaScript'>
@@ -112,16 +112,14 @@
                 'id_jurusan'    => $this->input->post('jur'),
                 'folder'        => $this->input->post('folder'),
                 'file'          => $file['file_name'],
+                'remark'        => time(),
                 'date'          => date('Y-m-d')
               );
               
               $this->db->insert('tb_materi' , $data);
               return $mssg = '1';
             } else {
-              return $mssg = "<SCRIPT LANGUAGE='JavaScript'>
-                    window.alert('Format atau Ukuran File yang anda masukan Salah')
-                    window.location.href='".base_url()."view/add';
-                    </SCRIPT>";
+              return $this->upload->display_errors();
             }
         } else {
           return $mssg = "<SCRIPT LANGUAGE='JavaScript'>

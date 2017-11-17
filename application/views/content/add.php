@@ -71,7 +71,7 @@
                                     <div class="input-field col s6">
                                         <select name="jen">
                                             <option disabled selected>Pilih Opsi</option>
-                                            <option value="pdf">PDF</option>
+                                            <option value="document">PDF</option>
                                             <option value="video">Video (MP4)</option>
                                             <option value="audio">Audio (MP3)</option>
                                             <option value="lom">LOM</option>
