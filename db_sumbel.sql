@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100125
 File Encoding         : 65001
 
-Date: 2017-11-17 15:34:17
+Date: 2017-11-22 16:44:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,7 +23,7 @@ CREATE TABLE `tb_folder` (
   `id_folder` int(11) NOT NULL AUTO_INCREMENT,
   `nama_folder` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_folder`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tb_folder
@@ -32,6 +32,7 @@ INSERT INTO `tb_folder` VALUES ('1', 'Video');
 INSERT INTO `tb_folder` VALUES ('2', 'Buku');
 INSERT INTO `tb_folder` VALUES ('3', 'Silabus dan RPP');
 INSERT INTO `tb_folder` VALUES ('4', 'LOM');
+INSERT INTO `tb_folder` VALUES ('5', 'Audio');
 
 -- ----------------------------
 -- Table structure for tb_jenjang
@@ -61,7 +62,7 @@ CREATE TABLE `tb_jur` (
   KEY `id_jurusan` (`id_jurusan`),
   KEY `fk_to_jenjang_jur` (`jenjang_jur`),
   CONSTRAINT `fk_to_jenjang_jur` FOREIGN KEY (`jenjang_jur`) REFERENCES `tb_jenjang` (`id_jenjang`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tb_jur
@@ -74,10 +75,11 @@ INSERT INTO `tb_jur` VALUES ('2', 'IPS', '1');
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_mapel`;
 CREATE TABLE `tb_mapel` (
-  `id_mapel` int(11) DEFAULT NULL,
+  `id_mapel` int(11) NOT NULL AUTO_INCREMENT,
   `nama_mapel` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_mapel`),
   KEY `id_mapel` (`id_mapel`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tb_mapel
@@ -95,7 +97,6 @@ CREATE TABLE `tb_materi` (
   `id_materi` int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `judul` varchar(255) DEFAULT NULL,
   `desc` longtext,
-  `jen` varchar(10) DEFAULT NULL,
   `kelas` varchar(10) DEFAULT NULL,
   `id_jenjang` int(11) DEFAULT NULL,
   `id_mapel` int(11) DEFAULT NULL,
@@ -106,19 +107,20 @@ CREATE TABLE `tb_materi` (
   `remark` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_materi`),
   KEY `fk_jur` (`id_jurusan`),
-  KEY `fk_mapel` (`id_mapel`),
   KEY `fk_jenjang` (`id_jenjang`),
   KEY `fk_folder` (`folder`),
+  KEY `fk_mapel` (`id_mapel`),
   CONSTRAINT `fk_folder` FOREIGN KEY (`folder`) REFERENCES `tb_folder` (`id_folder`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_jenjang` FOREIGN KEY (`id_jenjang`) REFERENCES `tb_jenjang` (`id_jenjang`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_jur` FOREIGN KEY (`id_jurusan`) REFERENCES `tb_jur` (`id_jurusan`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tb_mapel` (`id_mapel`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tb_materi
 -- ----------------------------
-INSERT INTO `tb_materi` VALUES ('00000000001', 'asdasdasd', 'asdasdasd asd asd a sdasd asd asd asda sd', 'document', 'K1', '1', '1', '1', 'content_1510892877.pdf', '1', '2017-11-17', '1510892877');
+INSERT INTO `tb_materi` VALUES ('00000000001', 'asdasdasd', 'asdasdasd asd asd a sdasd asd asd asda sd', 'K1', '1', '1', '1', 'content_1510892877.pdf', '2', '2017-11-17', '1510892877');
+INSERT INTO `tb_materi` VALUES ('00000000002', 'zxcvzxcvz', 'zxcvzxcv', 'K1', '1', '2', '2', 'content_1510892878.pdf', '1', '2017-11-17', '1510892878');
 
 -- ----------------------------
 -- View structure for v_content
@@ -127,7 +129,6 @@ DROP VIEW IF EXISTS `v_content`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_content` AS SELECT
 tb_materi.id_materi,
 tb_materi.judul,
-tb_materi.jen,
 tb_materi.kelas,
 tb_materi.id_jenjang,
 tb_jenjang.ket,
@@ -139,7 +140,8 @@ tb_materi.folder,
 tb_folder.nama_folder,
 tb_materi.date,
 tb_materi.file,
-tb_materi.remark
+tb_materi.remark,
+tb_materi.`desc`
 FROM
 tb_materi
 INNER JOIN tb_jenjang ON tb_materi.id_jenjang = tb_jenjang.id_jenjang
