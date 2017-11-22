@@ -7,22 +7,26 @@
                 <div class="card-content">
                     <span class="card-title">Responsive Embeds</span>
                     <h5 class="center"><?php echo $file['judul']?></h5><br>                    
-                      <?php if ($file['jen'] == 'video') { ?>
+                      <?php if ($file['nama_folder'] == 'Video') { ?>
                         <div class="video-container">
                           <video class="responsive-video" controls width="100%" height="250">
-                            <source src="<?php echo base_url().'content/video/'.$file['file']; ?>" type="video/mp4">
+                            <source src="<?php echo base_url().'content/Video/'.$file['file']; ?>" type="video/mp4">
                           </video>
                         </div><br>
-                        <p>Jenis File :  <?php echo $file['jen'].', '.$file['date'] ?> </p>
-                      <?php } elseif ($file['jen'] == 'document') { ?>
-                        <embed src="<?php echo base_url().'content/document/'.$file['file']; ?>" type="application/pdf" width="100%" height="1024">
+                        <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'] ?> </p>
+                      <?php } elseif ($file['nama_folder'] == 'Buku') { ?>
+                        <embed src="<?php echo base_url().'content/'.$file['nama_folder'].'/'.$file['file']; ?>" type="application/pdf" width="100%" height="700">
                         <br>
-                        <p>Jenis File :  <?php echo $file['jen'].', '.$file['date'] ?>, <a href="<?php echo base_url().'download/'.$file['jen'].'/'.$file['file']?>">Unduh File</a></p>
-                      <?php } elseif ($file['jen'] == 'audio') { ?>
-                        <embed class="center" src="<?php echo base_url().'content/audio/'.$file['file']; ?>" type="audio/mpeg>"><br>
-                         <p>Jenis File :  <?php echo $file['jen'].', '.$file['date'] ?>, <a href="<?php echo base_url().'download/'.$file['jen'].'/'.$file['file']?>">Unduh File</a></p>
+                        <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
+                      <?php } elseif ($file['nama_folder'] == 'Audio') { ?>
+                        <embed class="center" src="<?php echo base_url().'content/'.$file['nama_folder'].'/'.$file['file']; ?>" type="audio/mpeg>"><br>
+                         <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
+                      <?php } elseif ($file['nama_folder'] == 'LOM') { ?>
+                        <embed class="center" src="<?php echo base_url().'content/'.$file['nama_folder'].'/'.$file['file']; ?>" ><br>
+                         <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
                       <?php } else { echo "LOM";?>      
-                        <p>Jenis File :  <?php echo $file['jen'].', '.$file['date'] ?> </p>
+                        <embed class="center" src="<?php echo base_url().'content/'.$file['nama_folder'].'/'.$file['file']; ?>" ><br>
+                         <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
                       <?php } ?>                                      
                 </div>
             </div>

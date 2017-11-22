@@ -16,17 +16,15 @@
     }
 
     public function get_id($id) {
-      $query = $this->db->get_where('tb_jur' , array('id_jurusan' => $id));
+      $query = $this->db->get_where('v_jur' , array('id_jurusan' => $id));
       return $query->row_array();
     }
 
     public function insert() {
 
       $data = array(
-        'id_jurusan'      => $this->input->post('id'),
-        'nama_jur'        => $this->input->post('nama_jur'),
-        'id_jenjang'      => $this->input->post('id_jen'),
-        'ket'             => $this->input->post('ket')
+        'nama_jur'          => $this->input->post('nama_jur'),
+        'jenjang_jur'       => $this->input->post('id_jen')
       );
 
       if ($data !== NULL) {
@@ -43,8 +41,7 @@
 
       $data = array(        
         'nama_jur'        => $this->input->post('nama_jur'),
-        'id_jenjang'      => $this->input->post('id_jen'),
-        'ket'             => $this->input->post('ket')
+        'jenjang_jur'      => $this->input->post('id_jen')
       );
 
       $this->db->where('id_folder', $id);

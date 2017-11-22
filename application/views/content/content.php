@@ -11,7 +11,7 @@
                   <div class="card-action">
 
                       <a href="<?php echo base_url().'dash/file/'.$content['id_materi']?>"><?php echo $content['judul']; ?></a><br>
-                      <p><?php echo $content['jen'].' , '.$content['date']; ?><span class="new badge" data-badge-caption="New"></span></a></p>
+                      <p><?php echo $content['nama_folder'].' , '.$content['date']; ?></a></p>
                   </div>
               </div>
             </div>

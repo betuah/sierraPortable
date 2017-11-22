@@ -10,6 +10,7 @@
 <!-- Styles -->
 <link type="text/css" rel="stylesheet" href="<?php echo base_url()?>assets/plugins/materialize/css/materialize.min.css"/>
 <link href="<?php echo base_url()?>assets/fonts/google/material-icons.css" rel="stylesheet" />
+<link href="<?php echo base_url()?>assets/fonts/material/material-icons.css" rel="stylesheet" />
 <link href="<?php echo base_url()?>assets/plugins/metrojs/MetroJs.min.css" rel="stylesheet">
 <link href="<?php echo base_url()?>assets/plugins/weather-icons-master/css/weather-icons.min.css" rel="stylesheet">
 

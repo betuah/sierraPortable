@@ -41,11 +41,6 @@ class Crud extends CI_Controller {
 		}
 	}
 
-	public function update() {
-		// $id 	= this
-		$insrt 	= $this->$req->edit($id);
-	}
-
 	public function delete($req,$id) {
 		// echo $req." ".$id;
 		if ($req == 'materi') {

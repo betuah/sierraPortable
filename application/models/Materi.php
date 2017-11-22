@@ -10,26 +10,9 @@
 			$this->load->database();
 		}
 
-    public function count_all() {
-      return $this->db->count_all('v_content');
-    }
-
-    public function count_video($req='') {
-      $this->db->like('ket', $req);
-      $this->db->like('jen', 'video');
-      $this->db->from('v_content');
-      return $this->db->count_all_results();
-    }
-
-    public function count_buku($req='') {
-      $this->db->like('ket', $req);
-      $this->db->like('jen', 'document');
-      $this->db->from('v_content');
-      return $this->db->count_all_results();
-    }
-
     public function get_m_folder($req='') {
-      $this->db->distinct('folder');
+      $this->db->distinct();
+      $this->db->select('nama_folder');
       $this->db->where('ket', $req);
       $query = $this->db->get('v_content');
       return $query->result_array();
@@ -70,12 +53,17 @@
       return $query->row_array();
     }
 
+    public function cek_update($data) {
+      $query = $this->db->get_where('v_content' , $data);
+      return $query;
+    }
+
     public function insert() {
 
       $this->load->library('upload');
 
       $format                         = explode(".",$_FILES['file']['name']);
-      $type                           = $this->input->post('jen');
+      $type                           = $this->input->post('folder');
       $nmfile                         = "content_".time().".".$format[1];
       $config['upload_path']          = 'content/'.$type;
       $config['allowed_types']        = 'pdf|rar|zip|mp4|mp3';
@@ -88,7 +76,7 @@
       $this->form_validation->set_rules('judul','judul','required');
       $this->form_validation->set_rules('jenjang','jenjang','required');
       $this->form_validation->set_rules('desc','desc','required');
-      $this->form_validation->set_rules('jen','jen','required');
+      // $this->form_validation->set_rules('jen','jen','required');
       $this->form_validation->set_rules('mapel','mapel','required');
       $this->form_validation->set_rules('jur','jur','required');
       $this->form_validation->set_rules('kelas','kelas','required');
@@ -105,7 +93,7 @@
                $data = array(
                 'judul'         => $this->input->post('judul'),
                 'desc'          => $this->input->post('desc'),
-                'jen'           => $this->input->post('jen'),
+                // 'jen'           => $this->input->post('jen'),
                 'kelas'         => $this->input->post('kelas'),
                 'id_jenjang'    => $this->input->post('jenjang'),
                 'id_mapel'      => $this->input->post('mapel'),
@@ -134,7 +122,7 @@
       $data = array(
         'judul'         => $this->input->post('judul'),
         'desc'          => $this->input->post('desc'),
-        'jen'           => $this->input->post('jen'),
+        // 'jen'           => $this->input->post('jen'),
         'kelas'         => $this->input->post('kelas'),
         'id_jenjang'    => $this->input->post('jenjang'),
         'id_mapel'      => $this->input->post('mapel'),
@@ -154,11 +142,11 @@
     }
 
     public function delete($id) {
-      $query      = $this->db->get_where('tb_materi' , array('id_materi' => $id));
+      $query      = $this->db->get_where('v_content' , array('id_materi' => $id));
       $data       = $query->row_array();
       $file       = $data['file'];
-      $jen        = $data['jen'];
-      $path       = "content/".$jen."/";
+      $folder     = $data['nama_folder'];
+      $path       = "content/".$folder."/";
 
       // echo $path.$file;
       unlink($path.$file);

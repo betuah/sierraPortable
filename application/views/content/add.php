@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-content">
                     <div class="col s6">
-                      <span class="card-title">Data Content</span>
+                      <span class="card-title">Data <b>Berkas</b></span>
                     </div>
                     <div class="col s6">
                       <a class="right btn-floating btn-small waves-effect waves-light blue modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
@@ -16,7 +16,7 @@
                     <div id="modal1" class="modal modal-fixed-footer">
                       <form method="post" action="<?php echo base_url(); ?>insert/materi" enctype="multipart/form-data">
                         <div class="modal-content">
-                            <h3>Pengolahan Data</h3>
+                            <div class="center"><h3><b>Data</b> Management</h3></div><hr>
                             <div class="col s12">
                                 <div class="row">
                                     <div class="input-field col s12">
@@ -59,7 +59,7 @@
                                         </select>
                                         <label>Jurusan</label>
                                     </div>
-                                    <!-- <div class="input-field col s6">
+                                    <div class="input-field col s12">
                                         <select id="folder" name="folder">
                                           <option disabled selected>Pilih Folder</option>
                                           <?php foreach ($get_folder as $fol): ?>                                           
@@ -67,19 +67,7 @@
                                           <?php endforeach; ?>
                                         </select>
                                         <label>Folder</label>
-                                    </div> -->
-                                    <div class="input-field col s12">
-                                        <select name="jen">
-                                            <option disabled selected>Pilih Opsi</option>
-                                            <option value="document">PDF</option>
-                                            <option value="video">Video (MP4)</option>
-                                            <option value="audio">Audio (MP3)</option>
-                                            <option value="lom">LOM</option>
-                                            <option value="other">Lainnya</option>
-                                        </select>
-                                        <label>Jenis File</label>
-                                    </div>
-
+                                    </div>                                   
                                     <div class="file-field input-field col s12">
                                         <div class="btn teal lighten-1">
                                             <span>File</span>
@@ -99,18 +87,20 @@
                         </div>
                         <div class="modal-footer">
                             <div class="">
-                                <div class="col s2"><button class="modal-action modal-close waves-effect waves-teal white-text green btn-flat " type="submit" name="button">Simpan</button></div>
-                                <div class="col s2"><a href="#!" class="modal-action modal-close waves-effect waves-teal red btn-flat white-text">Tutup</a></div>
+                                <div class="col s2 right"><button class="modal-action modal-close waves-effect waves-teal white-text green btn-flat " type="submit" name="button">Simpan</button></div>
+                                <div class="col s2 right"><a href="#!" class="modal-action modal-close waves-effect waves-teal grey btn-flat white-text">Tutup</a></div>
                             </div>
                             
                         </div>
                       </form>
                     </div>
+
+                    
                     <table id="example" class="display responsive-table datatable-example col s12">
                         <thead>
                             <tr>
                                 <th>Judul</th>
-                                <th>Jenis Materi</th>
+                                <th>Folder</th>
                                 <th>Jenjang</th>
                                 <th>Kelas</th>
                                 <th>Mata Pelajaran</th>
@@ -121,7 +111,7 @@
                         <tfoot>
                             <tr>
                                 <th>Judul</th>
-                                <th>Jenis Materi</th>
+                                <th>Folder</th>
                                 <th>Jenjang</th>
                                 <th>Kelas</th>
                                 <th>Mata Pelajaran</th>
@@ -133,12 +123,12 @@
                           <?php foreach ($get_materi as $jur_m): ?>
                             <tr>
                                 <td><?php echo $jur_m['judul'] ?></td>
-                                <td><?php echo $jur_m['jen'] ?></td>
+                                <td><?php echo $jur_m['nama_folder'] ?></td>
                                 <td><?php echo $jur_m['ket'] ?></td>
                                 <td><?php echo $jur_m['kelas'] ?></td>
                                 <td><?php echo $jur_m['nama_mapel'] ?></td>
                                 <td><?php echo $jur_m['nama_jur'] ?></td>
-                                <td><a class="waves-effect waves-light btn red m-b-xs" onclick="del('<?php echo $jur_m['id_materi'] ?>')"><i class="material-icons">delete</i></a></td>                        </tr>
+                                <td width="10%"><a class="waves-effect waves-light btn red m-b-xs" onclick="del('<?php echo $jur_m['id_materi'] ?>')"><i class="material-icons">delete</i></a></td>                        </tr>
                           <?php endforeach; ?>
                         </tbody>
                     </table>

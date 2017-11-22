@@ -1,59 +1,43 @@
 <main class="mn-inner inner-active-sidebar">
     <div class="middle-content">
-      <div class="row no-m-t no-m-b">
-        <div class="col s12 m12 l4">
-            <div class="card stats-card">
-                <div class="card-content">
-                    <span class="card-title"><i class="material-icons">library_books</i></li>Buku</span>
-                    <span class="stats-counter"><span class="counter"><?php echo $count_buku ?></span><small>Buku</small></span>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m12 l4">
-            <div class="card stats-card">
-                <div class="card-content">
-                    <span class="card-title"><i class="material-icons">video_library</i>Video</span>
-                    <span class="stats-counter"><span class="counter"><?php echo $count_video ?></span><small>Video</small></span>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m12 l4">
-            <div class="card stats-card">
-                <div class="card-content">
-                    <span class="card-title"><i class="material-icons">dns</i>Semua Data</span>
-                    <span class="stats-counter"><span class="counter"><?php echo $count_all ?></span><small>Data</small></span>
-                </div>
-            </div>
-        </div>
-      </div>
       <div class="row">
         <div class="row">
-          <?php foreach ($get_m_folder as $folder): ?>
-            <div class="col s12 m4">
-            <div class="card">
-                <div class="card-image">
-                    <!-- <img src="<?php echo base_url()?>assets/images/sma.jpg" alt="" height="250"> -->
-                    
-                </div>
-                <div class="card-action row">
-                  <?php 
-                    $icon = '';
-                    $url  = base_url();
-                    if ($folder['nama_folder'] == 'Buku') {
-                      $icon = 'library_books';
-                    } elseif ($folder['nama_folder'] == 'Video') {
-                      $icon = 'video_library';
-                    } else {
-                      $icon = 'dns';
-                    }
-                  ?>
-
-                  <div class="col s2"><i class="material-icons"><?php echo $icon ?></i></div>
-                  <div class="col s2"><a href="<?php echo $url.'content/'.$slug.'/'.$folder['folder'] ?>"><?php echo $folder['nama_folder'] ?></div>                    
-                </div>
-            </div>
-          </div> 
-          <?php endforeach ?>     
+            <?php foreach ($get_folder as $folder): ?>
+              <?php 
+                $icon     = '';
+                $count    = '';
+                $url      = base_url();
+                if ($folder['id_folder'] == '2') {
+                  $icon   = 'library_books';
+                  $count  = $count_buku;
+                } elseif ($folder['id_folder'] == '1') {
+                  $icon   = 'video_library';
+                  $count  = $count_video;
+                } elseif ($folder['id_folder'] == '5') {
+                  $icon   = 'library_music';
+                  $count  = $count_audio;
+                } elseif ($folder['id_folder'] == '3') {
+                  $icon   = 'assignment';
+                  $count  = $count_silabus;
+                } elseif ($folder['id_folder'] == '4') {
+                  $icon   = 'dns';
+                  $count  = $count_lom;
+                } else {
+                  $icon   = 'dns';
+                  $count  = $count_all;
+                }
+              ?>
+              <a href="<?php echo $url.'content/'.$slug.'/'.$folder['id_folder'] ?>">
+                <div class="col s12 m4">
+                  <div class="card stats-card">
+                      <div class="card-content">
+                          <span class="card-title"><i class="material-icons"><?php echo $icon ?></i><?php echo $folder['nama_folder'] ?></span>
+                          <span class="stats-counter"><span class="counter"><?php echo $count ?></span><small><?php echo $folder['nama_folder'] ?></small></span>              
+                      </div>
+                  </div>
+                </div> 
+              </a>
+            <?php endforeach ?>            
         </div>
       </div>
     </div>

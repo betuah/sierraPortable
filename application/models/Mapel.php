@@ -23,7 +23,6 @@
     public function insert() {
 
       $data = array(
-        'id_mapel'      => $this->input->post('id'),
         'nama_mapel'    => $this->input->post('mapel')
       );
 
