@@ -103,6 +103,8 @@ class Dash extends CI_Controller {
 		}
 		
 		$data["get_content"] 		= $result;
+
+		print_r($data["get_content"]);
 		$str_links = $this->pagination->create_links();
 		$data['req'] 				= 'content';
 		$data["halaman"] 			= $str_links;

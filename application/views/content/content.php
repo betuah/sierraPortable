@@ -31,21 +31,25 @@
         </div>
 
         <div class="row">
-          <?php foreach ($get_content as $content): ?>            
-            <div class="col s12 m3">
-              <div class="card">
-                <a href="<?php echo base_url().'dash/file/'.$content['id_materi']?>">
-                  <div class="card-image">
-                      <img src="<?php echo base_url()?>assets/images/bg-content.jpg" alt="" height="130">
+          <?php if ($get_content !== '0'): ?>
+            <?php foreach ($get_content as $content): ?>            
+              <div class="col s12 m3">
+                <div class="card">
+                  <a href="<?php echo base_url().'dash/file/'.$content['id_materi']?>">
+                    <div class="card-image">
+                        <img src="<?php echo base_url()?>assets/images/bg-content.jpg" alt="" height="130">
+                    </div>
+                  </a>
+                  <div class="card-action">
+                      <a href="<?php echo base_url().'dash/file/'.$content['id_materi']?>"><?php echo $content['judul']; ?></a><br>
+                      <p><?php echo $content['nama_folder'].' , '.$content['date']; ?></p>
                   </div>
-                </a>
-                <div class="card-action">
-                    <a href="<?php echo base_url().'dash/file/'.$content['id_materi']?>"><?php echo $content['judul']; ?></a><br>
-                    <p><?php echo $content['nama_folder'].' , '.$content['date']; ?></p>
                 </div>
-              </div>
-            </div>        
-          <?php endforeach ?>
+              </div>        
+            <?php endforeach ?>
+          <?php else: ?>
+            <?php echo 'Tidak ada data ...' ?>
+          <?php endif ?>
         </div>
       </div>
     </div>

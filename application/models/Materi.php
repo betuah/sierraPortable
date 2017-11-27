@@ -21,6 +21,8 @@
         foreach ($query->result_array() as $row) {
           $data[] = $row;
         }
+      } else {
+        $data = '0';
       }
 
       return $data;
@@ -52,6 +54,8 @@
         foreach ($query->result_array() as $row) {
           $data[] = $row;
         }
+      } else {
+        $data = '0';
       }
 
       return $data;
