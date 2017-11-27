@@ -56,13 +56,60 @@ class Dash extends CI_Controller {
 			$data['req'] 			= $req;
 		}
 
-		// print_r($this->data->get_kelas());
 		$this->load->view('index', $data);
 	}
 
+	public function test($jenjang, $folder) {
+		$mapel = $this->input->post('mapel');
+		$kelas = $this->input->post('kelas');
+
+		// echo $retVal = $kelas != '' || $mapel != '' ?  "string" : 'asdasd' ;
+
+
+		echo $this->count->count_filter($jenjang, $folder,$kelas, $mapel);
+	}
+
 	public function content($jenjang, $folder) {
-		$data['get_content']		= $this->materi->get_content($jenjang, $folder);
+		$result 					= '';
+		$mapel 						= $this->input->post('mapel');
+		$kelas 						= $this->input->post('kelas');
+
+		$config 					= array();
+		$config["base_url"] 		= base_url() . "dash/content/".$jenjang.'/'.$folder.'/';
+		$total_row 					= $kelas != '' || $mapel != '' ? $this->count->count_filter($jenjang, $folder, $kelas, $mapel) :  $this->count->count_at($jenjang, $folder);
+
+		$config["total_rows"] 		= $total_row;
+		$config["per_page"] 		= 8;
+		$config['use_page_numbers'] = TRUE;
+		$config['num_links'] 		= $total_row;
+		$config['full_tag_open'] 	= '<ul class="pagination">';
+        $config['full_tag_close'] 	= '</ul>';
+		$config['cur_tag_open'] 	= '<li class="active"><a>';
+		$config['cur_tag_close'] 	= '</a></li>';
+		$config['next_link'] 		= '<li><i class="material-icons">chevron_right</i></li>';
+		$config['prev_link'] 		= '<li><i class="material-icons">chevron_left</i></li>';
+		$config['num_tag_open'] 	= '<li class="waves-effect">';
+        $config['num_tag_close'] 	= '</li>';
+		$config['uri_segment'] 		= 5;
+		$this->pagination->initialize($config);
+		
+		
+		$page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
+		
+		if ($kelas != '' || $mapel != '') {
+			$result = $this->materi->filter($config["per_page"], $page*$config["per_page"], $jenjang, $folder,$kelas,$mapel);
+		} else {
+			$result = $this->materi->fetch_data($config["per_page"], $page*$config["per_page"], $jenjang, $folder);
+		}
+		
+		$data["get_content"] 		= $result;
+		$str_links = $this->pagination->create_links();
 		$data['req'] 				= 'content';
+		$data["halaman"] 			= $str_links;
+		$data['get_mapel'] 			= $this->materi->get_mapel();
+		$data['jenjang']			= $jenjang;
+		$data['folder']				= $folder;
+
 		$this->load->view('index', $data);
 	}
 
@@ -77,19 +124,20 @@ class Dash extends CI_Controller {
 	}
 
 	public function cek_conn() {
-		$connected = @fsockopen($this->ip(), 80); 
+		$connected = @fsockopen($this->ip(), 21); 
                                         
 	    if ($connected){
-	        $is_conn = true; //action when connected
+	        $is_conn = TRUE; //action when connected
 	        fclose($connected);
 	    }else{
-	        $is_conn = false; //action in connection failure
+	        $is_conn = FALSE; //action in connection failure
 	    }
+
 	    return $is_conn;
 	}
 
 	public function cek() {
-		if ($this->cek_conn()) {
+		if ($this->cek_conn() == 1) {
 			$url="http://".$this->ip()."/sumbel/api_content";
 			$get_url = file_get_contents($url);
 
@@ -102,15 +150,18 @@ class Dash extends CI_Controller {
 				
 				return $data;
 			} else {
-				echo "API Tidak Tersedia";
+				echo $mssg = "<SCRIPT LANGUAGE='JavaScript'>
+	                window.alert('API Tidak Tersedia')
+	                window.location.href='".base_url()."view/dash';
+	                </SCRIPT>";
 			}
 		} else {
-			echo "Periksa Kembali Jaringan Internet Anda";
+			return $mssg = 1;
 		}
 	}
 
 	public function update($remark) {                           
-	    if ($this->cek_conn()){
+	    if ($this->cek_conn() == 1){
 	        $this->load->library('ftp');
 
 			$config['hostname'] 	= 'ftp://'.$this->ip();
@@ -143,35 +194,43 @@ class Dash extends CI_Controller {
 					
 					echo $mssg = "<SCRIPT LANGUAGE='JavaScript'>
 	                window.alert('Data berhasil di perbaharui')
-	                window.location.href='".base_url()."view/update';
+	                window.location.href='".base_url()."view/dash';
 	                </SCRIPT>";
 				}
 			}			
-	    }else{
+	    } else{
 	        echo $mssg = "<SCRIPT LANGUAGE='JavaScript'>
 	                window.alert('Tidak dapat terhubung, periksa kembali jaringan Anda atau hubungi Administrator SIERRA')
-	                window.location.href='".base_url()."view/update';
+	                window.location.href='".base_url()."view/dash';
 	                </SCRIPT>";
 	    }
 	}
 
 	public function cek_update() {
-		$a = array();
-		$data_server = $this->cek();
-		foreach ($data_server as $data) {
-			if ($data['remark'] !== '') {
-				$remark = array(
-					'remark' 	=> $data['remark'],
-					'file'		=> $data['file']
-				);
-		
-				$cek = $this->materi->cek_update($remark);
-				if ($cek->num_rows() !== 1) {
-					$a[] = $data;
+
+		$a 				= array();
+		$data_server 	= $this->cek();
+		if ($data_server == 1) {
+			echo $mssg = "<SCRIPT LANGUAGE='JavaScript'>
+	                window.alert('Tidak Dapat Terhubung. Periksa Kembali Jaringan Internet Anda!')
+	                window.location.href='".base_url()."view/dash';
+	                </SCRIPT>";
+		} else {
+			foreach ($data_server as $data) {
+				if ($data['remark'] !== '') {
+					$remark = array(
+						'remark' 	=> $data['remark'],
+						'file'		=> $data['file']
+					);
+			
+					$cek = $this->materi->cek_update($remark);
+					if ($cek->num_rows() !== 1) {
+						$a[] = $data;
+					}
 				}
 			}
-		}
 
-		return $a;
+			return $a;
+		}
 	}
 }

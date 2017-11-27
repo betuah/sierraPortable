@@ -17,16 +17,16 @@
                       <?php } elseif ($file['nama_folder'] == 'Buku') { ?>
                         <embed src="<?php echo base_url().'content/'.$file['nama_folder'].'/'.$file['file']; ?>" type="application/pdf" width="100%" height="700">
                         <br>
-                        <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
+                        <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'].', '.$file['file_size'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
                       <?php } elseif ($file['nama_folder'] == 'Audio') { ?>
                         <embed class="center" src="<?php echo base_url().'content/'.$file['nama_folder'].'/'.$file['file']; ?>" type="audio/mpeg>"><br>
-                         <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
+                         <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'].', '.$file['file_size'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
                       <?php } elseif ($file['nama_folder'] == 'LOM') { ?>
                         <embed class="center" src="<?php echo base_url().'content/'.$file['nama_folder'].'/'.$file['file']; ?>" ><br>
-                         <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
+                         <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'].', '.$file['file_size'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
                       <?php } else { echo "LOM";?>      
                         <embed class="center" src="<?php echo base_url().'content/'.$file['nama_folder'].'/'.$file['file']; ?>" ><br>
-                         <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
+                         <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'].', '.$file['file_size'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
                       <?php } ?>                                      
                 </div>
             </div>

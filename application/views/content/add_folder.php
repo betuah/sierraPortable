@@ -1,90 +1,8 @@
+<?php if ($this->session->userdata('user')) { ?>
 <main class="mn-inner">
     <div class="row">
         <div class="col s12">
             <div class="page-title">Pengolahan Data</div>
-        </div>
-        <div class="col s12 m12 l6">
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title">Data Content</span>
-                    <div class="row">
-                        <form class="col s12">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="judul" type="text" class="validate" name="judul">
-                                    <label for="judul">Judul</label>
-                                </div>
-                                <div class="input-field col s6">
-                                  <select onchange="jur(this.value)" name="js">
-                                      <option value="0" disabled selected>Pilih Opsi</option>
-                                      <?php foreach ($get_jenjang as $get_j): ?>
-                                        <option value="<?php echo $get_j['id_jenjang'] ?>"><?php echo $get_j['ket'] ?></option>
-                                      <?php endforeach; ?>
-                                  </select>
-                                  <label>Jenjang Sekolah</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <select name="kelas" name="kelas">
-                                        <option disabled selected>Pilih Opsi</option>
-                                        <option value="K1">Kelas X</option>
-                                        <option value="K2">Kelas XI</option>
-                                        <option value="K3">Kelas XII</option>
-                                    </select>
-                                    <label>Kelas</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <select name="mapel">
-                                        <option disabled selected>Pilih Opsi</option>
-                                        <?php foreach ($get_mapel as $mapel): ?>
-                                          <option value="<?php echo $mapel['id_mapel'] ?>"><?php echo $mapel['nama_mapel'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <label>Mata Pelajaran</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <select id="jur" name="jur">
-                                      <?php foreach ($get_jur as $jur): ?>
-                                        <option value="<?php echo $jur['id_jurusan'] ?>"><?php echo $jur['nama_jur'] ?></option>
-                                      <?php endforeach; ?>
-                                    </select>
-                                    <label>Jurusan</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <select id="folder">
-                                      <?php foreach ($get_folder as $fol): ?>
-                                        <option value="<?php echo $fol['id_folder'] ?>"><?php echo $fol['nama_folder'] ?></option>
-                                      <?php endforeach; ?>
-                                    </select>
-                                    <label>Folder</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <select name="jen">
-                                        <option disabled selected>Pilih Opsi</option>
-                                        <option value="pdf">PDF</option>
-                                        <option value="video">Video (MP4)</option>
-                                        <option value="audio">Audio (MP3)</option>
-                                        <option value="other">Lainnya</option>
-                                    </select>
-                                    <label>Jenis File</label>
-                                </div>
-                                <div class="file-field input-field col s12">
-                                    <div class="btn teal lighten-1">
-                                        <span>File</span>
-                                        <input name="file" type="file" multiple>
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text" placeholder="Unggah file Anda di sini ...">
-                                    </div>
-                                </div>
-                                <div class="input-field col s12">
-                                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                    <label for="textarea1">Deskripsi</label>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="col s12 m12 l6">
             <div class="card">
@@ -183,3 +101,4 @@
 
   }
 </script>
+<?php } else { redirect(base_url().'view/dash'); }?>

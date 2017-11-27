@@ -10,6 +10,22 @@
 			$this->load->database();
 		}
 
+    public function fetch_data($limit, $start, $jenjang, $folder) {
+      $this->db->limit($limit, $start);
+      $this->db->where(array('folder' => $folder, 'ket' => $jenjang));
+      $this->db->order_by('id_materi', 'ASC');
+      // $this->db->where('id_materi', $id);
+      $query = $this->db->get("v_content");
+      
+      if ($query->num_rows() > 0) {
+        foreach ($query->result_array() as $row) {
+          $data[] = $row;
+        }
+      }
+
+      return $data;
+    }
+
     public function get_m_folder($req='') {
       $this->db->distinct();
       $this->db->select('nama_folder');
@@ -21,6 +37,24 @@
     public function get_content($jenjang, $folder) {
       $query = $this->db->get_where('v_content', array('folder' => $folder, 'ket' => $jenjang));
       return $query->result_array();
+    }
+
+    public function filter($limit, $start,$jenjang,$folder,$kelas,$mapel) {
+      $this->db->limit($limit, $start);
+      $this->db->like('ket', $jenjang);
+      $this->db->like('folder', $folder);
+      $this->db->like('id_mapel', $mapel);
+      $this->db->like('kelas', $kelas);
+      $this->db->order_by('id_materi', 'ASC');
+      $query = $this->db->get('v_content');
+      
+      if ($query->num_rows() > 0) {
+        foreach ($query->result_array() as $row) {
+          $data[] = $row;
+        }
+      }
+
+      return $data;
     }
 
     public function get_materi() {
@@ -65,6 +99,8 @@
       $format                         = explode(".",$_FILES['file']['name']);
       $type                           = $this->input->post('folder');
       $nmfile                         = "content_".time().".".$format[1];
+      $tmp_size                       = $_FILES['file']['size'];
+      $config['file_size']            = ceil($tmp_size / 1024).' Kb';
       $config['upload_path']          = 'content/'.$type;
       $config['allowed_types']        = 'pdf|rar|zip|mp4|mp3';
       $config['max_size']             = 1000000; // Satuan Kbps
@@ -90,6 +126,8 @@
       } else {
         if ($_FILES['file']['name']) {
             if ($this->upload->do_upload('file')) {
+              
+
                $data = array(
                 'judul'         => $this->input->post('judul'),
                 'desc'          => $this->input->post('desc'),
@@ -100,6 +138,7 @@
                 'id_jurusan'    => $this->input->post('jur'),
                 'folder'        => $this->input->post('folder'),
                 'file'          => $file['file_name'],
+                'size'          => $file['file_size'],
                 'remark'        => time(),
                 'date'          => date('Y-m-d')
               );

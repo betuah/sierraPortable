@@ -18,7 +18,8 @@
 <link href="<?php echo base_url()?>assets/plugins/dropzone/basic.min.css" rel="stylesheet">
 <link href="<?php echo base_url()?>assets/plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="<?php echo base_url()?>assets/plugins/google-code-prettify/prettify.css" rel="stylesheet" type="text/css"/>
-
+<link href="<?php echo base_url()?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url()?>assets/css/mystyle.css" rel="stylesheet" type="text/css"/>
 
 <!-- Theme Styles -->
 <link href="<?php echo base_url()?>assets/css/alpha.min.css" rel="stylesheet" type="text/css"/>

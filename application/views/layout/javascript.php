@@ -25,4 +25,6 @@
 <script src="<?php echo base_url()?>assets/plugins/google-code-prettify/prettify.js"></script>
 <script src="<?php echo base_url()?>assets/js/pages/ui-modals.js"></script>
 <script src="<?php echo base_url()?>assets/plugins/google-code-prettify/prettify.js"></script>
+<!-- <script src="<?php echo base_url()?>assets/plugins/sweetalert/sweetalert.min.js"></script> -->
+<!-- <script src="<?php echo base_url()?>assets/js/pages/miscellaneous-sweetalert.js"></script> -->
 <!-- <script src="<?php echo base_url()?>assets/js/pages/dashboard.js"></script> -->

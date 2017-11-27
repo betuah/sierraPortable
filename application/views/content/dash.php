@@ -1,7 +1,8 @@
-<main class="mn-inner inner-active-sidebar">
-    <div class="middle-content">
+<main class="mn-inner">
+    <!-- <div class="middle-content"> -->
+    <div class="row">
       <div class="row no-m-t no-m-b">
-        <div class="col s12 m12 l4">
+        <div class="col s12 m12 l3">
             <div class="card stats-card">
                 <div class="card-content">
                     <span class="card-title"><i class="material-icons">library_books</i></li>Buku</span>
@@ -9,7 +10,7 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m12 l4">
+        <div class="col s12 m12 l3">
             <div class="card stats-card">
                 <div class="card-content">
                     <span class="card-title"><i class="material-icons">video_library</i>Video</span>
@@ -17,7 +18,15 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m12 l4">
+        <div class="col s12 m12 l3">
+            <div class="card stats-card">
+                <div class="card-content">
+                    <span class="card-title"><i class="material-icons">library_music</i>Audio</span>
+                    <span class="stats-counter"><span class="counter"><?php echo $count_audio ?></span><small>Data</small></span>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m12 l3">
             <div class="card stats-card">
                 <div class="card-content">
                     <span class="card-title"><i class="material-icons">dns</i>Semua Data</span>
@@ -29,31 +38,35 @@
       <div class="row">
         <div class="row">
           <div class="col s12 m6">
-            <div class="card">
-                <div class="card-image">
-                    <img src="<?php echo base_url()?>assets/images/sma.jpg" alt="" height="250">
-                    <span class="card-title">SMA</span>
-                </div>
-                <div class="card-action">
-                    <a href="view/sma">SUMBER BELAJAR SMA</a>
-                </div>
-            </div>
+            <a href="view/sma">
+              <div class="card">
+                  <div class="card-image">
+                      <img src="<?php echo base_url()?>assets/images/sma.jpg" alt="" height="250">
+                      <span class="card-title">SMA</span>
+                  </div>
+                  <div class="card-action">
+                      <a href="view/sma">SUMBER BELAJAR SMA</a>
+                  </div>
+              </div>
+            </a>
           </div>
-          <div class="col s12 m6">
-            <div class="card">
-                <div class="card-image">
-                    <img src="<?php echo base_url()?>assets/images/smk.jpg" alt="" height="250">
-                    <span class="card-title">SMK</span>
-                </div>
-                <div class="card-action">
-                    <a href="view/smk">SUMBER BELAJAR SMK</a>
-                </div>
-            </div>
+          <div class="col s12 m6">  
+            <a href="view/smk">
+              <div class="card">
+                  <div class="card-image">
+                      <img src="<?php echo base_url()?>assets/images/smk.jpg" alt="" height="250">
+                      <span class="card-title">SMK</span>
+                  </div>
+                  <div class="card-action">
+                      <a href="view/smk">SUMBER BELAJAR SMK</a>
+                  </div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
     </div>
-    <div class="inner-sidebar">
+    <!-- <div class="inner-sidebar">
         <span class="inner-sidebar-title">Filter Katagori</span>
         <div class="message-list row">
           <form class="col s12" action="#">
@@ -119,5 +132,5 @@
           </form>
         </div>
 
-    </div>
+    </div> -->
 </main>

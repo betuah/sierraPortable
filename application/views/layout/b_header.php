@@ -17,10 +17,42 @@
                 <a href="javascript: void(0)" class="close-search"><i class="material-icons">close</i></a>
             </form>
             <ul class="right col s9 m3 nav-right-menu">
-                <li><a href="javascript:void(0)" data-activates="chat-sidebar" class="chat-button show-on-large"><i class="material-icons">more_vert</i></a></li>
-                <li class="hide-on-med-and-up"><a href="javascript:void(0)" class="search-toggle"><i class="material-icons">search</i></a></li>
+                <li><a class="chat-button show-on-large modal-trigger" href="#login"><i class="material-icons">more_vert</i></a></li>
             </ul>
-
         </div>
     </nav>
 </header>
+
+<!-- Modal Login -->
+<div id="login" class="modal">
+  <form method="post" action="<?php echo base_url(); ?>auth_controller/login" enctype="multipart/form-data">
+  <!-- <form method="post" action="<?php echo base_url(); ?>auth_controller/signup" enctype="multipart/form-data"> -->
+    <div class="row">
+        <div class="modal-content">
+            <div class="center">
+                <h3>Form<b class="teal-text"> Login</b></h3>
+            </div>
+            <br><hr></b>
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="username" type="text" class="validate" name="username">
+                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                        <label for="username">Username</label>
+                    </div> 
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate" name="password">
+                        <label for="password">Password</label>
+                    </div>                     
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="">
+                <div class="col s2 right"><button class="modal-action modal-close waves-effect waves-teal white-text green btn-flat " type="submit" name="button">Sign In</button></div>
+                <div class="col s2 right"><a href="#!" class="modal-action modal-close waves-effect waves-teal grey btn-flat white-text">Tutup</a></div>
+            </div>
+        </div>
+    </div>
+  </form>
+</div>

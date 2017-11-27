@@ -11,7 +11,7 @@
           <?php $this->load->view('content/'.$req) ?>
           <?php $this->load->view('layout/b_footer') ?>
       </div>
-      <div class="left-sidebar-hover"></div>
+      <!-- <div class="left-sidebar-hover"></div> -->
 
       <?php $this->load->view('layout/javascript') ?>
     </body>

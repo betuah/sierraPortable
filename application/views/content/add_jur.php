@@ -1,3 +1,4 @@
+<?php if ($this->session->userdata('user')) { ?>
 <main class="mn-inner">
     <div class="row">
         <div class="col s12">
@@ -7,20 +8,21 @@
             <div class="card">
                 <div class="card-content">
                     <div class="col s6">
-                      <span class="card-title">Data <b>Jurusan</b></span>
+                      <span class="card-title">Data <b class="teal-text">Jurusan</b></span>
                     </div>
                     <div class="col s6">
                       <a class="right btn-floating btn-small waves-effect waves-light blue modal-trigger" href="#add_jur"><i class="material-icons">add</i></a>
                     </div>
                     
-                     <div id="add_jur" class="modal">
+                    <div id="add_jur" class="modal">
                       <form method="post" action="<?php echo base_url(); ?>insert/jur" enctype="multipart/form-data">
                         <div class="modal-content">
-                            <div class="center"><h3>Management <b>Jurusan</b></h3></div>
+                            <div class="center"><h3>Pengolahan <b class="teal-text">Jurusan</b></h3></div>
                             <div class="col s12">
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <input id="judul" type="text" class="validate" name="nama_jur">
+                                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                         <label for="nama_jur">Nama Jurusan</label>
                                     </div>
                                     <div class="input-field col s12">
@@ -88,3 +90,5 @@
        }
     }
 </script>
+
+<?php } else { redirect(base_url().'view/dash'); } ?>

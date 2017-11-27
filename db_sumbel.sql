@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100125
 File Encoding         : 65001
 
-Date: 2017-11-22 16:44:18
+Date: 2017-11-27 12:23:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,7 +23,7 @@ CREATE TABLE `tb_folder` (
   `id_folder` int(11) NOT NULL AUTO_INCREMENT,
   `nama_folder` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_folder`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tb_folder
@@ -62,13 +62,15 @@ CREATE TABLE `tb_jur` (
   KEY `id_jurusan` (`id_jurusan`),
   KEY `fk_to_jenjang_jur` (`jenjang_jur`),
   CONSTRAINT `fk_to_jenjang_jur` FOREIGN KEY (`jenjang_jur`) REFERENCES `tb_jenjang` (`id_jenjang`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tb_jur
 -- ----------------------------
 INSERT INTO `tb_jur` VALUES ('1', 'IPA', '1');
 INSERT INTO `tb_jur` VALUES ('2', 'IPS', '1');
+INSERT INTO `tb_jur` VALUES ('3', 'Teknik Komputer Jaringan', '2');
+INSERT INTO `tb_jur` VALUES ('4', 'Rekayasa Perangkat Lunak', '2');
 
 -- ----------------------------
 -- Table structure for tb_mapel
@@ -79,7 +81,7 @@ CREATE TABLE `tb_mapel` (
   `nama_mapel` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_mapel`),
   KEY `id_mapel` (`id_mapel`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tb_mapel
@@ -105,6 +107,7 @@ CREATE TABLE `tb_materi` (
   `folder` int(11) DEFAULT NULL,
   `date` varchar(10) DEFAULT NULL,
   `remark` varchar(255) DEFAULT NULL,
+  `file_size` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_materi`),
   KEY `fk_jur` (`id_jurusan`),
   KEY `fk_jenjang` (`id_jenjang`),
@@ -114,13 +117,27 @@ CREATE TABLE `tb_materi` (
   CONSTRAINT `fk_jenjang` FOREIGN KEY (`id_jenjang`) REFERENCES `tb_jenjang` (`id_jenjang`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_jur` FOREIGN KEY (`id_jurusan`) REFERENCES `tb_jur` (`id_jurusan`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tb_mapel` (`id_mapel`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tb_materi
 -- ----------------------------
-INSERT INTO `tb_materi` VALUES ('00000000001', 'asdasdasd', 'asdasdasd asd asd a sdasd asd asd asda sd', 'K1', '1', '1', '1', 'content_1510892877.pdf', '2', '2017-11-17', '1510892877');
-INSERT INTO `tb_materi` VALUES ('00000000002', 'zxcvzxcvz', 'zxcvzxcv', 'K1', '1', '2', '2', 'content_1510892878.pdf', '1', '2017-11-17', '1510892878');
+
+-- ----------------------------
+-- Table structure for tb_users
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_users`;
+CREATE TABLE `tb_users` (
+  `username` varchar(20) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `last_log` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of tb_users
+-- ----------------------------
+INSERT INTO `tb_users` VALUES ('sierra', 'a2043a9fe6ef31225e7d138e6fe03eb0', null);
 
 -- ----------------------------
 -- View structure for v_content
@@ -141,12 +158,13 @@ tb_folder.nama_folder,
 tb_materi.date,
 tb_materi.file,
 tb_materi.remark,
-tb_materi.`desc`
+tb_materi.`desc`,
+tb_materi.file_size
 FROM
 tb_materi
 INNER JOIN tb_jenjang ON tb_materi.id_jenjang = tb_jenjang.id_jenjang
 INNER JOIN tb_mapel ON tb_materi.id_mapel = tb_mapel.id_mapel
-INNER JOIN tb_jur ON tb_jur.jenjang_jur = tb_jenjang.id_jenjang AND tb_materi.id_jurusan = tb_jur.id_jurusan
+INNER JOIN tb_jur ON tb_materi.id_jurusan = tb_jur.id_jurusan
 INNER JOIN tb_folder ON tb_materi.folder = tb_folder.id_folder ;
 
 -- ----------------------------

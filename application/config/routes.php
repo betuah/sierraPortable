@@ -54,7 +54,6 @@ $route['view/(:any)']         				= 'dash/view/$1';
 $route['insert/(:any)']       				= 'crud/insert/$1';
 $route['update/(:any)']       				= 'crud/update/$1';
 $route['delete/(:any)/(:any)']  			= 'crud/delete/$1/$2';
-$route['content/(:any)/(:any)'] 			= 'dash/content/$1/$2';
 $route['download/(:any)/(:any)'] 			= 'dash/download/$1/$2';
 
 
