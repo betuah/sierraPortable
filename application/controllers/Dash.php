@@ -17,7 +17,7 @@ class Dash extends CI_Controller {
 	}
 
 	public function ip() {
-		return '172.16.0.120';
+		return '114.4.109.99';
 	}
 
 	public function view($req = 'dash')
@@ -165,8 +165,8 @@ class Dash extends CI_Controller {
 	        $this->load->library('ftp');
 
 			$config['hostname'] 	= 'ftp://'.$this->ip();
-			$config['username'] 	= 'sysadmin';
-			$config['password'] 	= 'admin122';
+			$config['username'] 	= 'sierra';
+			$config['password'] 	= 'sierra321';
 			$config['debug']        = TRUE;
 
 			$conn 	= $this->ftp->connect($config);
