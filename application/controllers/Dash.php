@@ -59,16 +59,6 @@ class Dash extends CI_Controller {
 		$this->load->view('index', $data);
 	}
 
-	public function test($jenjang, $folder) {
-		$mapel = $this->input->post('mapel');
-		$kelas = $this->input->post('kelas');
-
-		// echo $retVal = $kelas != '' || $mapel != '' ?  "string" : 'asdasd' ;
-
-
-		echo $this->count->count_filter($jenjang, $folder,$kelas, $mapel);
-	}
-
 	public function content($jenjang, $folder) {
 		$result 					= '';
 		$mapel 						= $this->input->post('mapel');
@@ -103,8 +93,6 @@ class Dash extends CI_Controller {
 		}
 		
 		$data["get_content"] 		= $result;
-
-		print_r($data["get_content"]);
 		$str_links = $this->pagination->create_links();
 		$data['req'] 				= 'content';
 		$data["halaman"] 			= $str_links;

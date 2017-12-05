@@ -97,11 +97,17 @@
     }
 
     public function insert() {
-
       $this->load->library('upload');
 
+      $data = array(
+          'id_folder' => $this->input->post('folder', TRUE)
+      );
+      $query      = $this->db->get_where('tb_folder', $data);
+      $result     = $query->row_array();
+      $folder     = $result['nama_folder'];      
+
       $format                         = explode(".",$_FILES['file']['name']);
-      $type                           = $this->input->post('folder');
+      $type                           = $folder;
       $nmfile                         = "content_".time().".".$format[1];
       $tmp_size                       = $_FILES['file']['size'];
       $config['file_size']            = ceil($tmp_size / 1024).' Kb';
@@ -118,7 +124,7 @@
       $this->form_validation->set_rules('desc','desc','required');
       // $this->form_validation->set_rules('jen','jen','required');
       $this->form_validation->set_rules('mapel','mapel','required');
-      $this->form_validation->set_rules('jur','jur','required');
+      // $this->form_validation->set_rules('jur','jur','required');
       $this->form_validation->set_rules('kelas','kelas','required');
       $this->form_validation->set_rules('folder','folder','required');
 
@@ -139,11 +145,12 @@
                 'kelas'         => $this->input->post('kelas'),
                 'id_jenjang'    => $this->input->post('jenjang'),
                 'id_mapel'      => $this->input->post('mapel'),
-                'id_jurusan'    => $this->input->post('jur'),
+                // 'id_jurusan'    => $this->input->post('jur'),
                 'folder'        => $this->input->post('folder'),
                 'file'          => $file['file_name'],
-                'size'          => $file['file_size'],
-                'remark'        => time(),
+                'file_size'     => $file['file_size'],
+                // 'remark'        => time(),
+                'remark'        => '',
                 'date'          => date('Y-m-d')
               );
               

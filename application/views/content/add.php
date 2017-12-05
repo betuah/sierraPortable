@@ -43,7 +43,7 @@
                                         </select>
                                         <label>Kelas</label>
                                     </div>
-                                    <div class="input-field col s6">
+                                    <div class="input-field col s12">
                                         <select name="mapel">
                                             <option disabled selected>Pilih Opsi</option>
                                             <?php foreach ($get_mapel as $mapel): ?>
@@ -52,7 +52,7 @@
                                         </select>
                                         <label>Mata Pelajaran</label>
                                     </div>
-                                    <div class="input-field col s6">
+                                    <!-- <div class="input-field col s6">
                                         <select id="jur" name="jur">
                                           <option disabled selected>Pilih Jurusan</option>
                                           <?php foreach ($get_jur as $jur): ?>
@@ -60,7 +60,7 @@
                                           <?php endforeach; ?>
                                         </select>
                                         <label>Jurusan</label>
-                                    </div>
+                                    </div> -->
                                     <div class="input-field col s12">
                                         <select id="folder" name="folder">
                                           <option disabled selected>Pilih Folder</option>
@@ -106,7 +106,7 @@
                                 <th>Jenjang</th>
                                 <th>Kelas</th>
                                 <th>Mata Pelajaran</th>
-                                <th>Jurusan</th>
+                                <!-- <th>Jurusan</th> -->
                                 <td>Action</td>
                             </tr>
                         </thead>
@@ -117,7 +117,7 @@
                                 <th>Jenjang</th>
                                 <th>Kelas</th>
                                 <th>Mata Pelajaran</th>
-                                <th>Jurusan</th>
+                                <!-- <th>Jurusan</th> -->
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -129,7 +129,7 @@
                                 <td><?php echo $jur_m['ket'] ?></td>
                                 <td><?php echo $jur_m['kelas'] ?></td>
                                 <td><?php echo $jur_m['nama_mapel'] ?></td>
-                                <td><?php echo $jur_m['nama_jur'] ?></td>
+                                <!--<td><?php //echo $jur_m['nama_jur'] ?></td>-->
                                 <td width="10%"><a class="waves-effect waves-light btn red m-b-xs" onclick="del('<?php echo $jur_m['id_materi'] ?>')"><i class="material-icons">delete</i></a></td>                        </tr>
                           <?php endforeach; ?>
                         </tbody>

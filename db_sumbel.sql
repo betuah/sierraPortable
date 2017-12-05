@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100125
 File Encoding         : 65001
 
-Date: 2017-11-27 12:23:45
+Date: 2017-12-05 10:02:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -117,7 +117,7 @@ CREATE TABLE `tb_materi` (
   CONSTRAINT `fk_jenjang` FOREIGN KEY (`id_jenjang`) REFERENCES `tb_jenjang` (`id_jenjang`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_jur` FOREIGN KEY (`id_jurusan`) REFERENCES `tb_jur` (`id_jurusan`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tb_mapel` (`id_mapel`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tb_materi
@@ -152,7 +152,6 @@ tb_jenjang.ket,
 tb_materi.id_mapel,
 tb_mapel.nama_mapel,
 tb_materi.id_jurusan,
-tb_jur.nama_jur,
 tb_materi.folder,
 tb_folder.nama_folder,
 tb_materi.date,
@@ -164,7 +163,6 @@ FROM
 tb_materi
 INNER JOIN tb_jenjang ON tb_materi.id_jenjang = tb_jenjang.id_jenjang
 INNER JOIN tb_mapel ON tb_materi.id_mapel = tb_mapel.id_mapel
-INNER JOIN tb_jur ON tb_materi.id_jurusan = tb_jur.id_jurusan
 INNER JOIN tb_folder ON tb_materi.folder = tb_folder.id_folder ;
 
 -- ----------------------------
