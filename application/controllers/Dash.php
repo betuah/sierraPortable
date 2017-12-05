@@ -164,7 +164,7 @@ class Dash extends CI_Controller {
 			$a = $this->cek();
 			foreach ($a as $a) {
 				if ($remark == $a['remark']) {					
-					$this->ftp->download('document/content_1510797878.pdf', $_SERVER['DOCUMENT_ROOT'].'/sumbel1/content/'.$a['nama_folder'].'/'.$a['file'], 'ascii');					
+					$this->ftp->download($a['nama_folder'].'/'.$a['file'], $_SERVER['DOCUMENT_ROOT'].'/sumbel1/content/'.$a['nama_folder'].'/'.$a['file'], 'ascii');					
 					$this->ftp->close();
 					
 					$data = array(

@@ -20,7 +20,7 @@
             <div class="collapsible-body">
                 <ul>
                     <li><a href="<?php echo base_url(); ?>view/add">Content</a></li>
-                    <li class="hidden"><a href="<?php echo base_url(); ?>view/add_jur">Jurusan</a></li>
+                    <!--<li><a href="<?php echo base_url(); ?>view/add_jur">Jurusan</a></li>-->
                     <li><a href="<?php echo base_url(); ?>view/add_mapel">Mata Pelajaran</a></li>
                 </ul>
             </div>

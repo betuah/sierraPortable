@@ -19,7 +19,7 @@
                         <br>
                         <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'].', '.$file['file_size'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
                       <?php } elseif ($file['nama_folder'] == 'Audio') { ?>
-                        <embed class="center" src="<?php echo base_url().'content/'.$file['nama_folder'].'/'.$file['file']; ?>" type="audio/mpeg>"><br>
+                        <audio controls class="center" <source src="<?php echo base_url().'content/'.$file['nama_folder'].'/'.$file['file']; ?>" type="audio/mpeg>"></audio><br>
                          <p>Jenis File :  <?php echo $file['nama_folder'].', '.$file['date'].', '.$file['file_size'] ?>, <a href="<?php echo base_url().'download/'.$file['nama_folder'].'/'.$file['file']?>">Unduh File</a></p>
                       <?php } elseif ($file['nama_folder'] == 'LOM') { ?>
                         <embed class="center" src="<?php echo base_url().'content/'.$file['nama_folder'].'/'.$file['file']; ?>" ><br>
